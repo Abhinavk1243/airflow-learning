@@ -1,0 +1,17 @@
+<h5>DAG {{ti.state}} Alert:</h5><br>
+<br>
+Environment: Stage<br>
+Try {{try_number}} out of {{max_tries + 1}}<br>
+Exception:<br>{{exception_html}}<br>
+<br>
+Dag Id: {{ti.dag_id}}<br>
+Start Time: {{ti.start_date}}<br>
+End Time: {{ti.end_date}}<br>
+Host: {{ti.hostname}}<br>
+
+<br>
+To restart DAG, Please login to <a href="link">DataOps Dashboard</a><br>
+
+
+<br><br>
+Automated email sent by internal Data Team.

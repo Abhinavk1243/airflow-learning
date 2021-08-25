@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .styled-table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .styled-table td,
+        .styled-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .body {
+            display: flexbox;
+        }
+
+        .styled-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .styled-table tr:hover {
+            background-color: #ddd;
+        }
+
+        .styled-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #04AA6D;
+            color: black;
+
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: mediumturquoise;
+            color: white;
+            text-align: center;
+            padding: 10px 16px;
+        }
+
+        .header {
+            padding: 10px 16px;
+            background: mediumturquoise;
+            color: #f1f1f1;
+            size: 6px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <br>
+    <br>
+    <div class="header" id="myHeader">
+        <h4>DAG completed notification:</h4>
+    </div>
+    <br>
+    To checkstatus DAG, Please login to <a style="color: #00bfa5" href="link">DataOps Dashboard</a><br>
+    <br>
+
+    <b>Environment:</b> {{content_data.content_data.execenviron}}<br>
+
+    <h3>Dag:</h3> <a style="color: #00bfa5" href='link'>{{content_data.content_data.dag_id}}</a>
+    completed successfully<br>
+
+
+    <!-- {{(content_data.content_data.current_duration|string).split(".")[0]}}<br> -->
+
+
+
+    {% if content_data.content_data.retries_data|length > 0 %}
+    <br><b>Current Execution:</b>
+    <table class="styled-table">
+
+        <tr>
+            {% for i in content_data.cols: %}
+            <th>{{i}}</th>
+            {% endfor %}
+        </tr>
+
+
+        {% for task in content_data.content_data.retries_data %}
+        <tr>
+            {% for col,val in task.items() %}
+            <td>{{val}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+    </table>
+    {% else %}
+    <br>
+    {% endif %}
+
+    <br><br>
+    <br>
+    <h3>Last Five Execution:</h3>
+    <table class="styled-table">
+
+        <tr>
+            {% for i in content_data.content_data.last_5_exec[0]: %}
+            <th>{{i}}</th>
+            {% endfor %}
+        </tr>
+
+
+        {% for task in content_data.content_data.last_5_exec: %}
+        <tr>
+            {% for col,val in task.items() %}
+            <td>{{val}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+    </table>
+    Automated email sent by internal Data Team.
+    <br>
+    <h3><strong>For further information </strong></h3>
+    <p><strong>Contact Details</strong> </p>
+    <p><strong>email</strong>: email123@gmail.com</p>
+    <p><strong>Ph.no</strong>: 430924032</p>
+    <p><strong>Site</strong>: <a href="sharecare.com">sharecare.com</a></p>
+    <p></p>
+    <div class="footer">
+        <p style="color: maroon;">@sharecare</p>
+    </div>
+
+</body>
+
+</html>
+
+
